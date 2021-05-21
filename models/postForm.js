@@ -8,7 +8,7 @@ const coWinSchema = new schema({
         required : true
     },
     phone:{
-        type : String,
+        type : Number,
         required:true
 
     },

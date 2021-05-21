@@ -1,10 +1,14 @@
 import express from 'express';
-import {getForm} from '../controllers/formController.js'
+import {getForm,postForm} from '../controllers/formController.js'
+import bodyParser from 'body-parser';
 
-const routes = express.Router();
 
-routes.get('/',getForm)
+const router = express.Router();
+router.use(bodyParser.json({limit: "30mb", extended: true}));
+router.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 
-// routes.post('/',postForm)
+router.get('/',getForm)
 
-export default routes;
+router.post('/',postForm)
+
+export default router;
