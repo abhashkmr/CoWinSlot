@@ -9,18 +9,29 @@ const coWinSchema = new schema({
     },
     phone:{
         type : Number,
-        required:true
+        required:true,
+        dropDups : true,
+        unique : true,
+        index : true
+        
 
     },
     email:{
         type: String,
-        required : true
+        required : true,
+        dropDups : true,
+        trim : true,
+        unique : true,
+        index : true
     },
     pinCode : {
         type: Number,
         required: true
     }
-});
+}
+
+
+);
 
 const coWin = mongoose.model('coWin',coWinSchema);
 export default coWin;

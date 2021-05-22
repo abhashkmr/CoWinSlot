@@ -13,7 +13,14 @@ export const getForm = async (req,res)=>{
 
 export const postForm = async (req,res)=>{
     const formData = req.body;
-    const coWinData = new coWin(formData);
+    let coWinData;
+
+    // First promise the data to be unique then create the model
+
+    coWin.init().then(
+    coWinData = new coWin(formData)).catch((err) => {
+        res.json(err.message);
+      });
     try{
         await coWinData.save();
         res.status(201).json(coWinData);
