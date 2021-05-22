@@ -1,5 +1,5 @@
 import coWin from '../models/postForm.js';
-
+import pinAndPhone from '../models/pinAndPhone.js';
 
 export const getForm = async (req,res)=>{
     try{
@@ -23,6 +23,11 @@ export const postForm = async (req,res)=>{
       });
     try{
         await coWinData.save();
+        pinAndPhone.findOne({pinCode:req.params.pinCode},req.body).then((res)=>{
+            console.log(res);
+            if(res == null)
+            pinAndPhone.create(req.body);
+        }).catch((err)=>{res.json(err.message)});
         res.status(201).json(coWinData);
     }catch(error)
     {
