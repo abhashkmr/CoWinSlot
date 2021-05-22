@@ -23,11 +23,33 @@ export const postForm = async (req,res)=>{
       });
     try{
         await coWinData.save();
-        pinAndPhone.findOne({pinCode:req.params.pinCode},req.body).then((res)=>{
-            console.log(res);
-            if(res == null)
-            pinAndPhone.create(req.body);
-        }).catch((err)=>{res.json(err.message)});
+        pinAndPhone.findOne({pinCode:req.body.pinCode},function(err,data){
+            if(err)
+            console.log(err);
+            else
+            {
+                if (data == null)
+                {
+                    pinAndPhone.create(req.body);
+                }
+                else
+                {
+                    pinAndPhone.updateOne(
+                        { pinCode:req.body.pinCode }, 
+                        { $push: { phone: req.body.phone } },
+                        function(error,docs){
+                            if(error)
+                            console.log(error);
+                            else
+                            console.log(docs);
+                        }
+                    );
+                }
+               
+            }
+            
+        });
+
         res.status(201).json(coWinData);
     }catch(error)
     {
