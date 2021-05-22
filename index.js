@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 app.set('view engine', 'ejs');
 // app.use(express.static(__dirname + '/views/css'));
+app.use(express.static('public'));
 
 const CONNECTION_URL = "mongodb+srv://hex-a-pot:sudhansu204me@cluster0.rjemq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
