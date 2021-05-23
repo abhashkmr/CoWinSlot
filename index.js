@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import router from './routes/routes.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
-import startService from './controllers/driver.js'
+
 
 const app = express();
 
@@ -21,7 +21,6 @@ mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology : tru
 .then(()=> app.listen(PORT,()=>console.log('SERVER RUNNING ON PORT : ' + PORT)))
 .catch((error)=> console.log(error.message));
 
-startService();
 
 mongoose.set('useFindAndModify',false);
 mongoose.set('useCreateIndex', true);

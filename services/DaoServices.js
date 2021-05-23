@@ -1,7 +1,14 @@
 import pinAndPhone from '../models/pinAndPhone.js';
-export const distinctPincodes = pinAndPhone.find().distinct('pinCode',(err,obj)=>{
-    if(err)
-    console.log(err);
+const distinctPincodes = async function (callback) {
+   await pinAndPhone.find((err,obj)=>{
+        if(err)
+        return callback(err);
+        else if(obj)
+        return callback(null,obj);
+        else
+        return callback();
+    
+    }).lean()
+}
 
-})
 export default distinctPincodes;

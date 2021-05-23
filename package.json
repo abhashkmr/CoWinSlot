@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "startService": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,10 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "fast-two-sms": "^3.0.0",
+    "hashmap": "^2.4.0",
     "mongoose": "^5.12.10",
-    "nodemon": "^2.0.7"
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
   }
 }
