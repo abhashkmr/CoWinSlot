@@ -1,10 +1,10 @@
 import request from 'request';
-
+import fast2sms from 'fast-two-sms';
 var date = new Date().toLocaleDateString().replace(/\//g,'-').trim();
 
 
 let data;
-const checkAvailabilityAndSend = async (pinCode)=>{
+const checkAvailabilityAndSend = async (pinCode,phoneList)=>{
     const apiURL = "http://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode="+pinCode+"&date="+date;
     
     let options = {json: true};
@@ -21,11 +21,19 @@ const checkAvailabilityAndSend = async (pinCode)=>{
         {
             let name = body.sessions[i].name;
             vaccineDetails[name] = [body.sessions[i].available_capacity_dose1,body.sessions[i].available_capacity_dose1];
+            
         }
             // console.log(vaccineDetails);
-            return vaccineDetails;
+            //
+            var msg = "Hello,vaccine details are - ";
+            for(let name in vaccineDetails)
+            {
+                msg += name + ":" + vaccineDetails[name] +"\n";
+            }
+            var options = {authorization : 'tWIg58NEPZayjTfuVovh1sKOUlQrA9F324cYRbSBH07nqzkJem2qTzCMHQr41imNoGg8XEn0IeBVFPld' , message : msg,  numbers : phoneList} 
+            fast2sms.sendMessage(options);
         };
-       console.log(vaccineDetails);
+    //    console.log(vaccineDetails);
     });
     return Promise.resolve(vaccineDetails);
 }

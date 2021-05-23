@@ -34,8 +34,8 @@ const sendMessage = async (phonesDict)=> {
     
     for (let pinCode in phonesDict)
     {
-        let data = await checkAvailabilityAndSend(pinCode)
-        console.log(data);
+        checkAvailabilityAndSend(pinCode,phonesDict[pinCode])
+       
         // console.log(pinCode);
         // console.log(phonesDict[pinCode]);
         // var options = {authorization : 'tWIg58NEPZayjTfuVovh1sKOUlQrA9F324cYRbSBH07nqzkJem2qTzCMHQr41imNoGg8XEn0IeBVFPld' , message : 'CHECKING!!' ,  numbers : phonesDict[pinCode]} 
