@@ -6,7 +6,7 @@ const pinAndPhoneSchema = mongoose.Schema({
         require : true
     },
     phone : {
-        type : [Number],
+        type : [String],
         require : true
     }
 })

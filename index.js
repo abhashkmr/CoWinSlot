@@ -4,6 +4,7 @@ import router from './routes/routes.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+
 const app = express();
 
 app.use('/',router);
@@ -19,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology : true, autoIndex: true})
 .then(()=> app.listen(PORT,()=>console.log('SERVER RUNNING ON PORT : ' + PORT)))
 .catch((error)=> console.log(error.message));
-const db = mongoose.connection;
+
 
 mongoose.set('useFindAndModify',false);
 mongoose.set('useCreateIndex', true);
