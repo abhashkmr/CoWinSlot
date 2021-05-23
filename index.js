@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import router from './routes/routes.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
+import startService from './controllers/driver.js'
 
 const app = express();
 
@@ -19,7 +20,8 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology : true, autoIndex: true})
 .then(()=> app.listen(PORT,()=>console.log('SERVER RUNNING ON PORT : ' + PORT)))
 .catch((error)=> console.log(error.message));
-const db = mongoose.connection;
+
+startService();
 
 mongoose.set('useFindAndModify',false);
 mongoose.set('useCreateIndex', true);
