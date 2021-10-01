@@ -8,7 +8,12 @@ const pinAndPhoneSchema = mongoose.Schema({
     phone : {
         type : [String],
         require : true
+    },
+    email:{
+        type:[String],
+        require:true
     }
+
 })
 
 const pinAndPhone = mongoose.model('pinAndPhone',pinAndPhoneSchema);

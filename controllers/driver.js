@@ -7,6 +7,7 @@ import checkAvailabilityAndSend from '../services/fetchCoWinData.js'
 
 
 var phonesDict = {};
+var emailsDict={};
 const startService = ()=>{
     console.log(distinctPincodes(function(err,found){
         if (err)
@@ -17,10 +18,13 @@ const startService = ()=>{
             for(let i in found)
             {
                 var pinCode = found[i].pinCode;
+                var email = found[i].email;
                 var phones = found[i].phone;
                 phonesDict[pinCode]=phones;
+                emailsDict[pinCode]=email;
+                console.log(email);
             }
-            sendMessage(phonesDict);
+            sendMessage(phonesDict,emailsDict);
 
         }catch(error)
         {
@@ -30,11 +34,11 @@ const startService = ()=>{
     }));
     }
 
-const sendMessage = async (phonesDict)=> {
+const sendMessage = async (phonesDict,emailsDict)=> {
     
     for (let pinCode in phonesDict)
     {
-        checkAvailabilityAndSend(pinCode,phonesDict[pinCode])
+        checkAvailabilityAndSend(pinCode,phonesDict[pinCode],emailsDict[pinCode])
        
         // console.log(pinCode);
         // console.log(phonesDict[pinCode]);
